@@ -1,0 +1,122 @@
+basePath: /api
+definitions:
+  v002_onelab_internal_model.ErrorResponse:
+    type: object
+  v002_onelab_internal_model.Transaction:
+    properties:
+      book_id:
+        type: integer
+      id:
+        type: integer
+      price:
+        type: number
+      user_id:
+        type: integer
+    type: object
+  v002_onelab_internal_model.TransactionInput:
+    properties:
+      book_id:
+        type: integer
+      price:
+        type: number
+    type: object
+host: localhost:8090
+info:
+  contact:
+    email: serikov.2002.12@gmail.com
+    name: Serikov Dias
+  description: REST API Library
+  title: Transaction
+  version: "1.0"
+paths:
+  /buy-book/:
+    get:
+      consumes:
+      - application/json
+      description: get buy books
+      operationId: get-buy-books
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/v002_onelab_internal_model.Transaction'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v002_onelab_internal_model.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - transaction
+    post:
+      consumes:
+      - application/json
+      description: buy book
+      operationId: transacton
+      parameters:
+      - description: book info and price
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/v002_onelab_internal_model.TransactionInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v002_onelab_internal_model.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v002_onelab_internal_model.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - transaction
+  /buy-book/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get buy books
+      operationId: get-buy-book
+      parameters:
+      - description: transaction ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/v002_onelab_internal_model.Transaction'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v002_onelab_internal_model.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v002_onelab_internal_model.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - transaction
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -1,0 +1,19 @@
+### Send request with dynamic variables in request's body
+POST localhost:8090/api/buy-book/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODEyOTE0NTgsImlhdCI6MTY4MTI4NDI1OCwic3ViIjoiNiJ9.coIGPAllUBx4mcvVNgoko9aa7DdPJtPnkic-eMYuQX0
+Content-Type: application/json
+
+{
+  "book_id": 11,
+  "price": 8000
+}
+
+### GET request with parameter
+GET localhost:8090/api/buy-book/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODEyOTE0NTgsImlhdCI6MTY4MTI4NDI1OCwic3ViIjoiNiJ9.coIGPAllUBx4mcvVNgoko9aa7DdPJtPnkic-eMYuQX0
+
+### GET request with parameter
+GET localhost:8090/api/buy-book/11
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODEyOTE0NTgsImlhdCI6MTY4MTI4NDI1OCwic3ViIjoiNiJ9.coIGPAllUBx4mcvVNgoko9aa7DdPJtPnkic-eMYuQX0
